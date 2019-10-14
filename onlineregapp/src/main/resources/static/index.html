@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Spring boot and Angularjs Tutorial</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="webjars/angular-material/1.1.1/angular-material.min.css">
+</head>
+<body>
+<div ng-app="onlineRegistrationApp" ng-controller="OnlineRegistrationCtrl" class="inputErrors" layout="column" ng-cloak="">
+
+    <md-content layout-padding>
+
+        <div class="row" align="right">
+            <form-field>
+                <label class="b">Navigate Menu:</label>
+                <select [(value)]="selected" ng-change="selectedStatusEvent()" ng-model="selectedValue">
+                    <option value="registration">Registration</option>
+                    <option value="report">Report</option>
+                </select>
+            </form-field>
+        </div>
+
+        <form name="registrationForm" ng-submit="saveNewUser()" ng-show="selectedValue === 'registration'">
+            <div class="a"><h2 tex>Online Registration Application</h2></div>
+
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>Enter person's name(s)</label>
+                    <input required name="names" ng-model="names">
+                    <div ng-messages="registrationForm.names.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="50">
+                    <label>Enter person's surname</label>
+                    <input required name="surname" ng-model="surname">
+                    <div ng-messages="registrationForm.surname.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <md-input-container class="md-block">
+                <label>Enter person's ID Number</label>
+                <input required ng-model="idNumber" name="idNumber" type="number">
+                <div ng-messages="registrationForm.idNumber.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+
+            <div align="right">
+                <button type="reset" class="btn btn-success" id="reset-btn" ng-click="clearFields()">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <div ng-show="selectedValue === 'report'" >
+            <div class="a"><h2 align="central">Registered Online Users Report</h2></div>
+            <div ng-show="registeredUsers.length === 0" align="central">
+                <b>There are no registered online users.</b>
+            </div>
+            <table mat-table class="mat-elevation-z8" ng-repeat="user in registeredUsers">
+
+                <ng-container matColumnDef="recordId">
+                    <th mat-header-cell *matHeaderCellDef>Record ID:</th>
+                    <td mat-cell>{{user.userRecordId}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="names">
+                    <th mat-header-cell *matHeaderCellDef>Names:</th>
+                    <td mat-cell>{{user.userFullName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="idNumber">
+                    <th mat-header-cell *matHeaderCellDef> ID Number:</th>
+                    <td mat-cell>{{user.userIdNumber}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="dateRegistered">
+                    <th mat-header-cell *matHeaderCellDef> Date Registered:</th>
+                    <td mat-cell>{{user.dateRegistered | date:'dd/MM/yyyy'}}</td>
+                </ng-container>
+            </table>
+        </div>
+    </md-content>
+</div>
+<div ng-view></div>
+<script src="webjars/lodash/4.15.0/dist/lodash.min.js"></script>
+<script src="webjars/angular/1.7.5/angular.min.js"></script>
+<script src="webjars/angular-animate/1.7.5/angular-animate.min.js"></script>
+<script src="webjars/angular-aria/1.7.5/angular-aria.min.js"></script>
+<script src="webjars/angular-messages/1.7.5/angular-messages.min.js"></script>
+<script src="webjars/angular-route/1.7.5/angular-route.min.js"></script>
+<script src="webjars/angular-resource/1.7.5/angular-resource.min.js"></script>
+<script src="webjars/angular-material/1.1.1/angular-material.min.js"></script>
+<script src="/js/service/UserService.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
