@@ -10,14 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OnlineRegistrationApplication {
 
-    Logger logger = LoggerFactory.getLogger(OnlineRegistrationApplication.class);
+    static Logger logger = LoggerFactory.getLogger(OnlineRegistrationApplication.class);
 
     @Autowired
     UserRepository userRepository;
 
     public static void main(String[] args) {
 
-        System.out.println("Starting APP...");
+        logger.debug("Starting APP...");
 
         SpringApplication.run(OnlineRegistrationApplication.class, args);
     }

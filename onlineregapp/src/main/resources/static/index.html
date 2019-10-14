@@ -15,7 +15,7 @@
 
         <div class="row" align="right">
             <form-field>
-                <label class="b">Navigate Menu:</label>
+                <label class="b">Menu:</label>
                 <select [(value)]="selected" ng-change="selectedStatusEvent()" ng-model="selectedValue">
                     <option value="registration">Registration</option>
                     <option value="report">Report</option>
@@ -24,7 +24,7 @@
         </div>
 
         <form name="registrationForm" ng-submit="saveNewUser()" ng-show="selectedValue === 'registration'">
-            <div class="a"><h2 tex>Online Registration Application</h2></div>
+            <div class="a"><h2>Online Registration Application</h2></div>
 
             <div layout="row">
                 <md-input-container flex="50">
@@ -78,7 +78,6 @@
                     <td>{{user.dateRegistered | date:'dd/MM/yyyy'}}</td>
                 </tr>
                 </tbody>
-
             </table>
         </div>
     </md-content>
