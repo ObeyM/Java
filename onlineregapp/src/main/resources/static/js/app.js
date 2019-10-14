@@ -2,9 +2,8 @@ angular.module('onlineRegistrationApp', ['ngMaterial', 'ngMessages', 'onlineRegi
     .controller('OnlineRegistrationCtrl', ['$scope', 'UserService', function ($scope, UserService) {
 
         $scope.registeredUsers = [];
-        $scope.displayedColumns = ['Names', 'ID Number', 'Date Registered'];
+        $scope.displayedColumns = ['recordId','names', 'idNumber', 'dateRegistered'];
         $scope.selectedValue = 'registration';
-        $scope.message = '';
         $scope.fetchRegisteredUsers = function () {
             UserService.getRegisteredUsers().then(function (value) {
                 console.log('Http response code' + value.status);
@@ -29,7 +28,7 @@ angular.module('onlineRegistrationApp', ['ngMaterial', 'ngMessages', 'onlineRegi
                         alert('Online registration successful.');
                         this.registrationForm.reset();                }
                     else {
-                        alert('Online registration failed - ID number: [userDto.userIdNumber] is already registered.');
+                        alert('Online registration failed - ID number: ' + [userDto.userIdNumber] + ' is already registered.');
                     }
                 });
             }

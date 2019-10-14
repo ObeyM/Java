@@ -17,12 +17,6 @@ public class UserServiceimpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public UserDto getUserByRecordId(String userIdNumber) {
-
-        return UserMapper.entityToDto(userRepository.getOne(userIdNumber));
-    }
-
-    @Override
     public List<UserDto> getRegisteredUsers() {
 
         List<UserDto> userDtoList = new LinkedList<>();
@@ -40,9 +34,7 @@ public class UserServiceimpl implements UserService {
 
         boolean result = false;
 
-
         if (userRepository.checkDuplication(userDto.getUserIdNumber()) == null){
-
             userRepository.save(UserMapper.dtoToEntity(userDto));
             result = true;
         }

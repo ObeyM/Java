@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="webjars/angular-material/1.1.1/angular-material.min.css">
+    <link rel="stylesheet" href="webjars/angular-material/1.1.10/angular-material.min.css">
 </head>
 <body>
 <div ng-app="onlineRegistrationApp" ng-controller="OnlineRegistrationCtrl" class="inputErrors" layout="column" ng-cloak="">
@@ -60,29 +60,25 @@
         <div ng-show="selectedValue === 'report'" >
             <div class="a"><h2 align="central">Registered Online Users Report</h2></div>
             <div ng-show="registeredUsers.length === 0" align="central">
-                <b>There are no registered online users.</b>
+                <span style="color: red; ">There are no registered online users.</span>
             </div>
-            <table mat-table class="mat-elevation-z8" ng-repeat="user in registeredUsers">
+            <table border="1" ng-show="registeredUsers.length > 0">
+                <thead></thead>
+                <tr>
+                    <th>Record ID</th>
+                    <th>Full Names</th>
+                    <th>ID Number</th>
+                    <th>Date Registered</th>
+                </tr>
+                <tbody>
+                <tr ng-repeat="user in registeredUsers">
+                    <td>{{user.userRecordId}}</td>
+                    <td>{{user.userFullName}}</td>
+                    <td>{{user.userIdNumber}}</td>
+                    <td>{{user.dateRegistered | date:'dd/MM/yyyy'}}</td>
+                </tr>
+                </tbody>
 
-                <ng-container matColumnDef="recordId">
-                    <th mat-header-cell *matHeaderCellDef>Record ID:</th>
-                    <td mat-cell>{{user.userRecordId}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="names">
-                    <th mat-header-cell *matHeaderCellDef>Names:</th>
-                    <td mat-cell>{{user.userFullName}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="idNumber">
-                    <th mat-header-cell *matHeaderCellDef> ID Number:</th>
-                    <td mat-cell>{{user.userIdNumber}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="dateRegistered">
-                    <th mat-header-cell *matHeaderCellDef> Date Registered:</th>
-                    <td mat-cell>{{user.dateRegistered | date:'dd/MM/yyyy'}}</td>
-                </ng-container>
             </table>
         </div>
     </md-content>
@@ -95,7 +91,7 @@
 <script src="webjars/angular-messages/1.7.5/angular-messages.min.js"></script>
 <script src="webjars/angular-route/1.7.5/angular-route.min.js"></script>
 <script src="webjars/angular-resource/1.7.5/angular-resource.min.js"></script>
-<script src="webjars/angular-material/1.1.1/angular-material.min.js"></script>
+<script src="webjars/angular-material/1.1.10/angular-material.min.js"></script>
 <script src="/js/service/UserService.js"></script>
 <script src="/js/app.js"></script>
 </body>
